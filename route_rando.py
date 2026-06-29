@@ -56,6 +56,7 @@ else:
 
 route = [level_1, level_2, level_3, level_4, level_5, level_6, level_7, ""]
 
+#Global restrictions (no max, no logic to prevent conflicts)
 restrictions = [
     "No bombs.",
     "No charge shots.",
@@ -63,7 +64,7 @@ restrictions = [
     "Eliminate any available non-route-essential wingmen.",
     "Break at least one wing if possible.",
     "If wings break, don't fix them.",
-    "Beat medal threshold by 30 or more.",
+    "Beat medal threshold by 10% or more.",
     "Lowest score allowed by route (Bosses don't count).",
     "No barrel rolls.",
     "No advanced maneuvers (Somersaults/U-turns).",
@@ -75,13 +76,14 @@ def set_restriction(set):
     restrictions = set
     added_restrictions = []
     for i in restrictions:
-        if random.randint(1,100) > 85:
+        if random.randint(1,100) > 90:
             added_restrictions.append(i)
     if added_restrictions == []:
         return "No restrictions."
     else:
         return f"\n* ".join(added_restrictions)
-    
+        
+#Level-specific restrictions (max 1 per level)
 level_restrictions = {
     "Corneria": {
         "Meteo": [
